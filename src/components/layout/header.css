@@ -1,0 +1,41 @@
+.container {
+  padding: 1rem 2rem;
+}
+
+.header--right {
+  padding-left: 16px;
+  display: flex;
+  gap: 20px;
+}
+
+.cart-icon {
+  cursor: pointer;
+}
+
+/* CSS để ẩn/hiện các phần tử dựa trên kích thước màn hình */
+.mobile-menu-icon {
+  display: block; /* Hiển thị trên mobile */
+}
+.desktop-logo,
+.desktop-account,
+.avatar-icon {
+  display: none; /* Ẩn trên mobile */
+}
+
+@media (max-width: 992px) {
+  .header--right--user {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  /* Kích thước màn hình tablet trở lên */
+  .mobile-menu-icon {
+    display: none; /* Ẩn trên desktop */
+  }
+  .desktop-logo,
+  .desktop-account,
+  .avatar-icon {
+    display: block; /* Hiển thị trên desktop */
+  }
+}

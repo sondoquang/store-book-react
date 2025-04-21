@@ -1,0 +1,22 @@
+.wrapper-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.register {
+  position: absolute;
+  width: 30%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px;
+  border-radius: 6px;
+  box-shadow: 0 5px 20px lightgray;
+}
+.register--title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.register--footer {
+  text-align: center;
+}

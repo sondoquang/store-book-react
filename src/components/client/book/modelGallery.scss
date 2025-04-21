@@ -1,0 +1,19 @@
+.ImageGallery{
+  .list-image-left{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-content: flex-start;
+
+
+    .ant-image-img{
+      cursor: pointer;
+    }
+  }
+
+  .image-gallery-image{
+    max-height: 400px !important;
+    min-height: 400px !important;
+  }
+}

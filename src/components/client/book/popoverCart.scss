@@ -1,0 +1,42 @@
+
+.popover-cart-body{
+  .btnAction{
+    text-align: right;
+    .btnCheckOut{
+      border: 1px solid rgb(24, 150, 188) !important;
+      border-radius: 0;
+      color: #fff;
+      border-radius: 4px;
+      font-weight: bold;
+      background-color: rgb(24, 150, 188);
+    }
+  }
+  .popover-cart {
+    display: flex;
+    gap: 1rem;
+    min-width: 250px;
+    width: 250px;
+    .popover-cart-img{
+      width: 30%;
+      // height: 50px;
+      overflow: hidden;
+      img{
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+    .popover-cart-content{
+      .popover-cart-content_title{
+        overflow: hidden;
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+      .popover-cart-content_price{
+        color: rgb(24, 150, 188);
+      }
+
+    }
+  }
+}

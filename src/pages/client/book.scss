@@ -1,0 +1,92 @@
+@import "react-image-gallery/styles/css/image-gallery.css";
+
+.container{
+  .wrapper-row{
+    background-color: #fff !important;
+  }
+  .detail-book-images,
+  .detail-book-content {
+    padding: 1rem;
+  }
+
+  .detail-book-content{
+
+    display: flex;
+    flex-direction: column;
+    gap: 0 20px;
+
+    .detail-book-content-title{
+      font-size: 25px;
+    }
+    .detail-book-content-sold{
+      display: flex;
+      align-items: center ;
+    }
+    .detail-book-content-price{
+      font-size: 25px;
+      font-weight: bold;
+      color: #1896bc;
+      padding: 2rem 0;
+    }
+    .detail-book-content-delivery{
+      display: flex;
+      gap: 1rem;
+
+      .title{
+        color: gray;
+      }
+    }
+    .detail-book-content-number{
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      .title{
+        color: gray;
+      }
+      .count{
+        display: flex;
+      }
+      button{
+        border-radius: 0 !important;
+      }
+      .custom-count{
+        max-width: 60px;
+        border-radius: 0 !important;
+        text-align: center;
+      }
+    }
+    .detail-book-content-action{
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      button{
+        border-radius: 0 !important;
+        padding: 1.3rem 1rem;
+        color: rgb(24, 150, 188);
+        border: 1px solid rgb(24, 150, 188);
+        background-color: rgb(24, 150, 188,.2);
+        font-weight: 600;
+      }
+
+      .add{
+        background-color: rgb(24, 150, 188);
+        color: #fff;
+        text-transform: capitalize;
+      }
+
+      .add:hover{
+        opacity: .6;
+      }
+    }
+  }
+
+  .origin-image,
+  .thumbnail-image,
+  .image-gallery-image{
+    cursor: pointer;
+  }
+
+  .image-gallery-image{
+    max-height: 350px !important;
+  }
+}
