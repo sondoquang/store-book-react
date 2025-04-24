@@ -37,7 +37,6 @@ export const create = (data) => {
  * @returns 
  */
 export const update = async ({id, data}) => {
-  debugger;
   const { data: category } = await findCategory(data?.categoryId);
   let { categoryId , ... newData } = data;
   newData = {...newData,category}

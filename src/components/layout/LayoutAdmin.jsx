@@ -16,8 +16,6 @@ const LayoutAdmin = () => {
   const [collapsed, setCollapsed] = useState(false);
   const { user } = useAppContext();
 
-  console.log("Layout Admin Chay");
-
   const menuItems = [
     {
       key: "dashboard",

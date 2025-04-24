@@ -1,4 +1,5 @@
 import { fetchAccount } from "@services/accountService";
+import { refreshToken } from "@services/authService";
 import { createContext, useContext, useEffect, useState } from "react";
 import { PropagateLoader } from "react-spinners";
 
@@ -17,6 +18,17 @@ export const AppProvider = ({ children }) => {
         if (response.data) {
           setUser(response.data);
           setIsAuthenticated(true);
+        } else {
+          const res = await refreshToken();
+          if (res && res.data) {
+            setUser(res.data.userLogin);
+            setIsAuthenticated(true);
+            localStorage.setItem("accessToken", res.data.accessToken);
+          } else {
+            setUser(null);
+            setIsAuthenticated(false);
+            localStorage.removeItem("accessToken");
+          }
         }
       } catch (e) {
         console.log("Fetch account error: ", e);

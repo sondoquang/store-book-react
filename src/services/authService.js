@@ -32,7 +32,7 @@ export const loginAPI = async (data) => {
  * @returns 
  */
 export const registerAPI = (data) => {
-  const urlRegister = "/accounts";
+  const urlRegister = "/auth/register";
   return axios.post(urlRegister,data)
 }
 

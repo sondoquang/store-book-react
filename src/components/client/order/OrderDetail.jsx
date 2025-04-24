@@ -1,15 +1,17 @@
-import { Button, Col, InputNumber, Row, Table } from "antd";
+import { App, Button, Col, Empty, InputNumber, Row, Table } from "antd";
 import "./OrderDetail.scss";
 import { useAppContext } from "@context/AppContext";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { currencyFormatter } from "@utils/formatCurrency";
+import { useNavigate } from "react-router-dom";
 
 const OrderDetail = () => {
   const { carts, setCarts } = useAppContext();
+  const navigate = useNavigate();
 
   const [totalPrice, setTotalPrice] = useState(0);
-
+  const { notification } = App.useApp();
   useEffect(() => {
     if (carts && carts.length > 0) {
       let sum = 0;
@@ -62,7 +64,7 @@ const OrderDetail = () => {
       title: "Image",
       dataIndex: "image",
       key: "image",
-      render: (value, text, record) => (
+      render: (value) => (
         <div className="product-image">
           <img
             src={`${import.meta.env.VITE_HOST}/storages/images/${
@@ -87,7 +89,7 @@ const OrderDetail = () => {
       title: "Quantity",
       dataIndex: "quantity",
       key: "id",
-      render: (value, text, record) => (
+      render: (value, text) => (
         <InputNumber
           value={text.quantity}
           onChange={(vlu) => handleChangeInput(vlu, text)}
@@ -103,7 +105,7 @@ const OrderDetail = () => {
       title: "Action",
       dataIndex: "remove",
       key: "remove",
-      render: (value, text, record) => (
+      render: (value, text) => (
         <DeleteOutlined
           style={{ color: "red", cursor: "pointer" }}
           onClick={() => handleRemoveItem(text?.id)}
@@ -112,40 +114,55 @@ const OrderDetail = () => {
     },
   ];
 
+  const handleBuyBookButton = () => {
+    if (carts.length < 1) {
+      notification.error({
+        message: "Không thể mua hàng !",
+        description: "Giỏ hàng hiện không tồn tại sản phẩm",
+      });
+    } else {
+      navigate("/orders/checkout");
+    }
+  };
+
   return (
-    <div
-      className="container"
-      style={{ background: "rgba(160, 160, 160, 0.5)" }}
-    >
-      <div className="wrapper-order">
-        <Row gutter={[20, 20]}>
-          <Col lg={18} md={18}>
+    <div className="wrapper-order">
+      <Row gutter={[20, 20]}>
+        <Col lg={18} md={18}>
+          {carts.length > 0 && (
             <Table
               dataSource={dataSource}
               columns={columns}
               className="table-order"
             />
-            ;
-          </Col>
-          <Col lg={6} md={6}>
-            <div className="info-order">
-              <Row>
-                <Col span={12}>Tạm tính</Col>
-                <Col span={12} style={{ textAlign: "right" }}>
-                  {currencyFormatter(totalPrice, "vnd")}
-                </Col>
-              </Row>
-              <Row>
-                <Col span={12}>Tổng tiền</Col>
-                <Col span={12} style={{ textAlign: "right" }}>
-                  {currencyFormatter(totalPrice, "vnd")}
-                </Col>
-              </Row>
-              <Button className="button-buy">Mua Hàng (1)</Button>
-            </div>
-          </Col>
-        </Row>
-      </div>
+          )}
+          {carts.length <= 0 && <Empty />}
+        </Col>
+        <Col lg={6} md={6}>
+          <div className="info-order">
+            <Row>
+              <Col span={12}>Tạm tính</Col>
+              <Col span={12} style={{ textAlign: "right" }}>
+                {currencyFormatter(totalPrice, "vnd")}
+              </Col>
+            </Row>
+            <Row>
+              <Col span={12}>Tổng tiền</Col>
+              <Col span={12} style={{ textAlign: "right" }}>
+                {currencyFormatter(totalPrice, "vnd")}
+              </Col>
+            </Row>
+            <Button
+              className="button-buy"
+              onClick={() => {
+                handleBuyBookButton();
+              }}
+            >
+              Mua Hàng ({carts.length})
+            </Button>
+          </div>
+        </Col>
+      </Row>
     </div>
   );
 };

@@ -1,9 +1,11 @@
 import {
+  EditOutlined,
   HomeOutlined,
   LoginOutlined,
   LogoutOutlined,
   MenuOutlined,
   ShoppingCartOutlined,
+  SignatureOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Avatar, Badge, Button, Drawer, Dropdown, Popover, Space } from "antd";
@@ -15,11 +17,16 @@ import "./header.css";
 import { Input, Row, Col } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { currencyFormatter } from "@utils/formatCurrency";
+import UpdateUser from "@components/client/user/UpdateUser";
+import ChangePassword from "@components/client/user/ChangePassword";
 
 const Header = () => {
   const { user, setUser, isAuthenticated, setIsAuthenticated, carts } =
     useAppContext();
   const [open, setOpen] = useState(false);
+  const [isOpenModelUpdateInfo, setIsOpenModelUpdateInfo] = useState(false);
+  const [isOpenModelChangePassword, setIsOpenModelChangePassword] =
+    useState(false);
 
   const showDrawer = () => {
     setOpen(true);
@@ -54,11 +61,29 @@ const Header = () => {
       },
       {
         label: (
+          <p onClick={() => setIsOpenModelUpdateInfo(true)}>
+            Cập nhật thông tin
+          </p>
+        ),
+        key: "3",
+        icon: <EditOutlined />,
+      },
+      {
+        label: (
+          <a href="#" onClick={() => setIsOpenModelChangePassword(true)}>
+            Đổi mật khẩu
+          </a>
+        ),
+        key: "4",
+        icon: <EditOutlined />,
+      },
+      {
+        label: (
           <p onClick={handleLogout} style={{ color: "#1677ff" }}>
             Đăng xuất
           </p>
         ),
-        key: "3",
+        key: "5",
         icon: <LogoutOutlined />,
       },
     ];
@@ -73,6 +98,11 @@ const Header = () => {
         label: <Link to="/">Trang chủ</Link>,
         key: "5",
         icon: <HomeOutlined />,
+      },
+      {
+        label: <Link to="/register">Đăng kí</Link>,
+        key: "6",
+        icon: <SignatureOutlined />,
       },
     ];
   }
@@ -160,15 +190,17 @@ const Header = () => {
                 <Avatar shape="square" icon={<UserOutlined />} />
               </Badge>
               <Dropdown menu={{ items: items }}>
-                <Button>
-                  <div className="desktop-account">
-                    {!isAuthenticated ? (
-                      <Link to="/admin">Tài khoản</Link>
-                    ) : (
-                      <span>{user?.fullName}</span>
-                    )}
-                  </div>
-                </Button>
+                <Space>
+                  <Button>
+                    <div className="desktop-account">
+                      {!isAuthenticated ? (
+                        <Link to="/admin">Tài khoản</Link>
+                      ) : (
+                        <span>{user?.fullName}</span>
+                      )}
+                    </div>
+                  </Button>
+                </Space>
               </Dropdown>
             </Space>
           </div>
@@ -187,6 +219,14 @@ const Header = () => {
           </div>
         ))}
       </Drawer>
+      <UpdateUser
+        isOpen={isOpenModelUpdateInfo}
+        setIsOpen={setIsOpenModelUpdateInfo}
+      />
+      <ChangePassword
+        isOpen={isOpenModelChangePassword}
+        setIsOpen={setIsOpenModelChangePassword}
+      />
     </div>
   );
 };

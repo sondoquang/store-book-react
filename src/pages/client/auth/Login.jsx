@@ -18,7 +18,13 @@ const LoginPage = () => {
       setIsAuthenticated(true);
       localStorage.setItem("accessToken", res.data.accessToken);
       message.success("Đăng nhập thành công");
-      navigate("/");
+      const targetUri = localStorage.getItem("securityURI");
+      if (targetUri) {
+        localStorage.removeItem("securityURI");
+        navigate(targetUri);
+      } else {
+        navigate("/");
+      }
     } else {
       notification.error({
         message: "Đăng nhập thất bại",

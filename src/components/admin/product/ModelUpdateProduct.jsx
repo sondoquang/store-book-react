@@ -1,4 +1,4 @@
-import { findAllCategories, findById } from "@services/categoryService";
+import { findAllCategories } from "@services/categoryService";
 import {
   App,
   Button,
@@ -84,8 +84,6 @@ const ModelUpdateProduct = ({
 
       setFileList(imageSlider);
       setImages(imageSlider.map((img) => img.name));
-      console.log(form.getFieldValue("image"));
-      // form.setFieldValue("image", fileList);
     }
   }, [isOpen, initialValues]);
 

@@ -5,7 +5,6 @@ import {
   PlusOutlined,
 } from "@ant-design/icons";
 import { ProTable } from "@ant-design/pro-components";
-import { deleteAccount } from "@services/accountService";
 import { App, Button, Popconfirm } from "antd";
 import { useRef, useState } from "react";
 import { deleteProduct, findAllProducts } from "@services/productService";
@@ -60,7 +59,7 @@ const TableProduct = () => {
       title: "ID",
       dataIndex: "id",
       hideInSearch: true,
-      render(dom, entity, index, action, schema) {
+      render(dom, entity) {
         return (
           <>
             <a
@@ -98,7 +97,7 @@ const TableProduct = () => {
       title: "STATUS",
       dataIndex: "available",
       hideInSearch: true,
-      render(dom, entity, index, action, schema) {
+      render(dom, entity) {
         return (
           <>
             <p>{entity.available ? "Available" : "Unavailable"}</p>
@@ -115,7 +114,7 @@ const TableProduct = () => {
     {
       title: "ACTION",
       hideInSearch: true,
-      render(dom, entity, index, action, schema) {
+      render(dom, entity) {
         return (
           <>
             <div style={{ display: "flex", gap: "16px" }}>
@@ -151,7 +150,7 @@ const TableProduct = () => {
         actionRef={actionRef}
         rowKey="id"
         cardBordered
-        request={async (params, sort, filter) => {
+        request={async (params) => {
           let query = "/products";
           if (params) {
             query += `?pageNo=${params.current}&pageSize=${params.pageSize}`;
@@ -175,7 +174,6 @@ const TableProduct = () => {
         }}
         pagination={{
           current: meta?.currentPage,
-          pageSize: meta?.pageSize,
           showSizeChanger: true,
           total: meta?.totalElements,
         }}

@@ -19,6 +19,10 @@ import enUS from "antd/locale/en_US";
 import ProtectedRoute from "@components/auth/ProtectedRoute";
 import "./components/client/book/popoverCart.scss";
 import OrderPage from "@pages/client/OrderPage.jsx";
+import Checkout from "@components/client/order/Checkout.jsx";
+import OrderDetail from "@components/client/order/OrderDetail.jsx";
+import Success from "@components/client/order/Success.jsx";
+import History from "@components/client/order/History.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,14 +44,36 @@ const router = createBrowserRouter([
       {
         path: "/orders",
         element: <OrderPage />,
-      },
-      {
-        path: "/checkout",
-        element: (
-          <ProtectedRoute>
-            <div>Checkout Page</div>
-          </ProtectedRoute>
-        ),
+        children: [
+          {
+            index: true,
+            element: <OrderDetail />,
+          },
+          {
+            path: "/orders/checkout",
+            element: (
+              <ProtectedRoute>
+                <Checkout />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "/orders/success",
+            element: (
+              <ProtectedRoute>
+                <Success />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "/orders/history",
+            element: (
+              <ProtectedRoute>
+                <History />
+              </ProtectedRoute>
+            ),
+          },
+        ],
       },
     ],
   },

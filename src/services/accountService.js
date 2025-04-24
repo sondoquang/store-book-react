@@ -34,7 +34,7 @@ export const createAccount = (values) => {
  * @param {*} username : username of account
  * @returns 
  */
-export const updateAccount = (values, username) => {
+export const updateAccount = ({values, username}) => {
   const urlCreateAccount = `/accounts/${username}`
   return axios.put(urlCreateAccount,values )
 }
@@ -47,5 +47,15 @@ export const updateAccount = (values, username) => {
 export const deleteAccount = (username) => {
   const urlCreateAccount = `/accounts/${username}`
   return axios.delete(urlCreateAccount )
+}
+
+/**
+ * Hàm đổi mật khẩu
+ * @param {*} data 
+ * @returns 
+ */
+export const changePassword = (data) => {
+  const url= "/change-password";
+  return axios.post(url, data);
 }
 
