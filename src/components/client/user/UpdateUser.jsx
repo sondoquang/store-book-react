@@ -68,7 +68,6 @@ const UpdateUser = ({ isOpen, setIsOpen }) => {
 
   const onFinish = async (values) => {
     const newValue = { ...values, photo: userAvatar };
-    debugger;
     const res = await updateAccount({
       values: newValue,
       username: user.username,

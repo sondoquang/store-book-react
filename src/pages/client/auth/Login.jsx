@@ -9,8 +9,6 @@ const LoginPage = () => {
   const { setUser, setIsAuthenticated } = useAppContext();
   const navigate = useNavigate();
 
-  // const userInfo = useSelector((state) => state.user);
-
   const onFinish = async (values) => {
     const res = await loginAPI(values);
     if (res.statusCode === 200) {
@@ -35,16 +33,6 @@ const LoginPage = () => {
     }
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log(errorInfo);
-    notification.error({
-      message: "Đăng nhập thất bại",
-      description: "Lỗi đăng nhập",
-      duration: 3,
-      placement: "topRight",
-    });
-  };
-
   return (
     <div className="wrapper-login">
       <div className="login">
@@ -56,7 +44,6 @@ const LoginPage = () => {
           className="register--form"
           initialValues={{ remember: true }}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
           <h2 className="login--title">Đăng nhập</h2>

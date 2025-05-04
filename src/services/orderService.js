@@ -14,3 +14,8 @@ export const getAllOrders = () => {
     const url = "/history";
     return axios.get(url);
 }
+
+export const findAllOrders = () => {
+    const url = "/orders";
+    return axios.get(url);
+}

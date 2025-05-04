@@ -31,11 +31,13 @@
 @media (min-width: 992px) {
   /* Kích thước màn hình tablet trở lên */
   .mobile-menu-icon {
-    display: none; /* Ẩn trên desktop */
+    /* Ẩn trên desktop */
+    display: none;
   }
   .desktop-logo,
   .desktop-account,
   .avatar-icon {
-    display: block; /* Hiển thị trên desktop */
+    /* Hiển thị trên desktop */
+    display: block;
   }
 }

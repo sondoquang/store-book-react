@@ -39,6 +39,7 @@ export const AppProvider = ({ children }) => {
     getAccount();
   }, []);
 
+  /* Add to card */
   useEffect(() => {
     const localCarts = localStorage.getItem("carts");
     if (localCarts) {

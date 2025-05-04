@@ -194,7 +194,7 @@ const Header = () => {
                   <Button>
                     <div className="desktop-account">
                       {!isAuthenticated ? (
-                        <Link to="/admin">Tài khoản</Link>
+                        <Link to="/login">Tài khoản</Link>
                       ) : (
                         <span>{user?.fullName}</span>
                       )}

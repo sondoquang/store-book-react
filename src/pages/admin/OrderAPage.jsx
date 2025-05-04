@@ -1,7 +1,9 @@
+import TableOrder from "@components/admin/order/TableOrder";
+
 const OrderAPage = () => {
   return (
     <div>
-      <p>Order Page Admin</p>
+      <TableOrder />
     </div>
   );
 };
